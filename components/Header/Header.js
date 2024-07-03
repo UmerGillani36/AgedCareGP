@@ -3,6 +3,7 @@ import React from "react";
 import logo from "../../assets/logo.jpg";
 import { Image } from "expo-image";
 import { Text } from "react-native-paper";
+import { colors } from "../../resources/colors";
 const Header = () => {
   return (
     <View style={styles.container}>
@@ -42,5 +43,6 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontWeight: "bold",
+    color: colors.teal900,
   },
 });
