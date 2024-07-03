@@ -5,6 +5,7 @@ import { Searchbar, Text } from "react-native-paper";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import ScheduleCard from "../../components/ScheduleCard/ScheduleCard";
 import Chip from "../../components/Chip/Chip";
+import Table from "../../components/Table/Table";
 
 const home = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -31,9 +32,25 @@ const home = () => {
             <AntDesign name="filter" size={26} color={colors.teal900} />
           </TouchableOpacity>
         </View>
-        <Text variant="headlineLarge" style={styles.resultHeading}>
-          Results
-        </Text>
+        <View
+          style={{
+            width: "100%",
+            borderRadius: 8,
+            backgroundColor: "white",
+          }}
+        >
+          <Text
+            variant="headlineLarge"
+            style={{
+              ...styles.resultHeading,
+              color: colors.teal800,
+              marginLeft: 10,
+            }}
+          >
+            Results
+          </Text>
+          <Table />
+        </View>
         <ScheduleCard />
         <ScheduleCard />
         <ScheduleCard />
