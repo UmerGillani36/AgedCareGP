@@ -23,13 +23,19 @@ const ScheduleCard = () => {
         </Text>
       </View>
       <View style={styles.actionContainer}>
-        <Button mode="contained" buttonColor="red" style={styles.button}>
+        <Button
+          mode="contained"
+          buttonColor="red"
+          style={styles.button}
+          labelStyle={{ fontWeight: "bold" }}
+        >
           Remove
         </Button>
         <Button
           mode="contained"
           buttonColor={colors.teal600}
           style={styles.button}
+          labelStyle={{ fontWeight: "bold" }}
         >
           Add
         </Button>
