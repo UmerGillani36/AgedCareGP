@@ -4,7 +4,7 @@ import { colors } from "../../resources/colors";
 import { Button, Text } from "react-native-paper";
 import { useRouter } from "expo-router";
 
-const LocationCard = () => {
+const DetailedCard = () => {
   const router = useRouter();
 
   return (
@@ -35,22 +35,45 @@ const LocationCard = () => {
           <Text style={styles.strong}>Room:</Text> 35
         </Text>
       </View>
-      <View style={styles.actionContainer}>
-        <Button
-          mode="contained"
-          buttonColor={colors.teal600}
-          style={styles.button}
-          labelStyle={{ fontWeight: "bold" }}
-          onPress={() => router.replace("/details")}
-        >
-          Details
-        </Button>
+      <View
+        style={{ ...styles.cardRow, alignItems: "flex-start", marginTop: 10 }}
+      >
+        <View style={styles.reasonContainer}>
+          <Text variant="bodyLarge" style={styles.strong}>
+            Phone:
+          </Text>
+          <Text
+            variant="bodyLarge"
+            style={{ ...styles.normal, maxWidth: "90%", textAlign: "starts" }}
+          >
+            0455 566 741
+          </Text>
+        </View>
+        <Text variant="bodyLarge" style={styles.normal}>
+          <Text style={styles.strong}>Wing:</Text> 2A
+        </Text>
+      </View>
+      <View style={styles.singleRow}>
+        <Text variant="bodyLarge" style={styles.strong}>
+          NOK | MPOA | MTDM:
+        </Text>
+        <Text variant="bodyLarge" style={styles.normal}>
+          Robert Young
+        </Text>
+      </View>
+      <View style={styles.singleRow}>
+        <Text variant="bodyLarge" style={styles.strong}>
+          Email:
+        </Text>
+        <Text variant="bodyLarge" style={styles.normal}>
+          robert.young@gmail.com
+        </Text>
       </View>
     </View>
   );
 };
 
-export default LocationCard;
+export default DetailedCard;
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -88,13 +111,11 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     gap: 5,
   },
-  actionContainer: {
+  singleRow: {
     width: "100%",
-    marginTop: 30,
+    flexDirection: "row",
     alignItems: "center",
-  },
-  button: {
-    width: "100%",
-    borderRadius: 8,
+    justifyContent: "space-between",
+    marginTop: 10,
   },
 });
