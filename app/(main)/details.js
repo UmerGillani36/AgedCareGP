@@ -1,16 +1,20 @@
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
-import React from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
 import { colors } from "../../resources/colors";
-import { Button, Text } from "react-native-paper";
-import Feather from "react-native-vector-icons/Feather";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { Button, List, Text, TextInput } from "react-native-paper";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import { useRouter } from "expo-router";
 import DetailedCard from "../../components/DetailedCard/DetailedCard";
-import Chip from "../../components/Chip/Chip";
+import Table from "../../components/Table/Table";
+import { loremText } from "../../resources/constant";
 
 const details = () => {
   const router = useRouter();
+  const [expandedId, setExpandedId] = useState(null);
+
+  const handlePress = (id) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -175,6 +179,85 @@ const details = () => {
             morning urine and cardiovascular risk analysis.
           </Text>
         </View>
+        <TextInput
+          mode="outlined"
+          placeholder="See Recent Investigations"
+          style={styles.input}
+          right={
+            <TextInput.Icon
+              icon={() => <AntDesign name={"down"} size={20} />}
+              onPress={() => {}}
+            />
+          }
+        />
+        <View style={styles.recentInvestigations}>
+          <Table />
+        </View>
+        <Text variant="headlineSmall" style={styles.resultHeading}>
+          AI Summary Notes:
+        </Text>
+        <View style={styles.notesContainer}>
+          <Text style={styles.notesValue}>
+            <Text style={styles.notesLabel}>Patient History: </Text>
+            The patient engaged in a philosophical conversation in the afternoon
+            with no subsequent episodes of dizziness. The nursing staff report
+            no active issues.
+          </Text>
+          <Text style={styles.notesValue}>
+            <Text style={styles.notesLabel}>General Assessment: </Text>
+            The patient is currently experiencing no fever or pain.
+            Cardiovascular assessment shows no signs of dyspnea. The weight
+            chart remains stable, and there have been no new concerns from the
+            staff today. The patient's medication and overall health status were
+            reviewed with no notable issues. Dietary intake is satisfactory, and
+            no laboratory tests are deemed necessary at this time.
+          </Text>
+          <Text style={styles.notesValue}>
+            <Text style={styles.notesLabel}>Reason for Visit: </Text>
+            Routine review of patient's condition.
+          </Text>
+          <Text style={styles.notesValue}>
+            <Text style={styles.plan}>Plan: </Text>
+            The medication chart has been reviewed with no changes required. The
+            plan is to continue observation without any adjustments.
+          </Text>
+        </View>
+      </View>
+      <View style={styles.accordionContainer}>
+        <List.AccordionGroup style={styles.listSection}>
+          <List.Accordion
+            title="See Full Doctors Note"
+            expanded={expandedId === "1"}
+            style={styles.accordion}
+            titleStyle={styles.accordionTitle}
+            onPress={() => handlePress("1")}
+            id="1"
+          >
+            <List.Item
+              description={loremText}
+              descriptionNumberOfLines={0}
+              descriptionStyle={styles.description}
+              style={styles.listItem}
+            />
+          </List.Accordion>
+
+          <List.Accordion
+            title="See Full Additional Notes"
+            expanded={expandedId === "2"}
+            onPress={() => handlePress("2")}
+            style={styles.accordion}
+            titleStyle={styles.accordionTitle}
+            id="2"
+          >
+            <List.Item
+              description={loremText}
+              descriptionNumberOfLines={0}
+              style={styles.listItem}
+              contentStyle={styles.contentStyle}
+              descriptionStyle={styles.description}
+            />
+          </List.Accordion>
+        </List.AccordionGroup>
       </View>
       <View style={styles.footer}>
         <Button
@@ -230,7 +313,6 @@ const styles = StyleSheet.create({
   },
   notes: {
     fontSize: 16,
-    // fontWeight: "800",
     color: "black",
   },
   footer: {
@@ -342,5 +424,66 @@ const styles = StyleSheet.create({
   },
   test: {
     fontWeight: "bold",
+  },
+  input: {
+    width: "100%",
+    borderRadius: 12,
+    backgroundColor: "white",
+    borderColor: colors.teal500,
+    marginTop: 10,
+  },
+  recentInvestigations: {
+    width: "100%",
+    backgroundColor: "white",
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  notesLabel: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  notesValue: {
+    fontSize: 16,
+    color: "black",
+    marginBottom: 20,
+  },
+  plan: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  accordionContainer: {
+    width: "100%",
+    backgroundColor: "white",
+    padding: 20,
+    gap: 20,
+  },
+  listSection: {
+    width: "100%",
+    backgroundColor: "white",
+    borderRadius: 8,
+    gap: 20,
+  },
+  accordion: {
+    borderRadius: 8,
+    borderWidth: 1,
+    backgroundColor: "white",
+    borderColor: colors.teal500,
+  },
+  accordionTitle: {
+    borderRadius: 8,
+    color: "grey",
+  },
+  listItem: {
+    width: "100%",
+  },
+  contentStyle: {
+    width: "100%",
+  },
+  description: {
+    width: "100%",
+    borderWidth: 1,
+    borderColor: colors.teal500,
+    borderRadius: 8,
+    padding: 10,
   },
 });
