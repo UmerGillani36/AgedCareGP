@@ -1,9 +1,8 @@
 import { StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
-import { Button, DataTable, Text } from "react-native-paper";
+import { DataTable, Text } from "react-native-paper";
 import { colors } from "../../resources/colors";
-import Entypo from "react-native-vector-icons/Entypo";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
 const Table = () => {
   const [page, setPage] = React.useState(0);
@@ -15,31 +14,18 @@ const Table = () => {
   const [items] = React.useState([
     {
       key: 1,
-      name: "Cam Smith",
-      dob: "04/98",
-      wing: "1A",
-      room: 16,
+      title: "Pathology Report",
+      date: "1/5/24",
     },
     {
       key: 2,
-      name: "Smith John",
-      dob: "04/98",
-      wing: "1A",
-      room: 16,
+      title: "X-ray Report",
+      date: "1/3/24",
     },
     {
       key: 3,
-      name: "Erin Smith",
-      dob: "04/98",
-      wing: "1A",
-      room: 16,
-    },
-    {
-      key: 4,
-      name: "Cam Smith",
-      dob: "04/98",
-      wing: "1A",
-      room: 16,
+      title: "Pathology Report",
+      date: "1/3/24",
     },
   ]);
 
@@ -52,57 +38,32 @@ const Table = () => {
 
   return (
     <ScrollView horizontal>
-      <DataTable style={{ minWidth: 560 }}>
+      <DataTable style={{ minWidth: "100%" }}>
         <DataTable.Header>
           <DataTable.Title style={{ minWidth: 180 }}>
-            <Text style={{ fontWeight: "bold" }}>Name</Text>
+            <Text style={{ fontWeight: "bold" }}>Title</Text>
           </DataTable.Title>
-          <DataTable.Title style={{ minWidth: 100 }}>
-            <Text style={{ fontWeight: "bold" }}>DOB</Text>
+          <DataTable.Title style={{ minWidth: 70 }}>
+            <Text style={{ fontWeight: "bold" }}>Date</Text>
           </DataTable.Title>
-          <DataTable.Title style={{ minWidth: 100 }}>
-            <Text style={{ fontWeight: "bold" }}>Wing</Text>
-          </DataTable.Title>
-          <DataTable.Title style={{ minWidth: 100 }}>
-            <Text style={{ fontWeight: "bold" }}>Room</Text>
-          </DataTable.Title>
-          <DataTable.Title style={{ minWidth: 50 }}>
-            <Text style={{ fontWeight: "bold" }}>Add</Text>
-          </DataTable.Title>
-          <DataTable.Title style={{ minWidth: 50 }}>
-            <Text style={{ fontWeight: "bold" }}>Remove</Text>
+          <DataTable.Title>
+            <Text style={{ fontWeight: "bold" }}>Open</Text>
           </DataTable.Title>
         </DataTable.Header>
 
         {items.map((item) => (
           <DataTable.Row key={item.key}>
             <DataTable.Cell style={{ minWidth: 180 }}>
-              {item.name}
+              {item.title}
             </DataTable.Cell>
-            <DataTable.Cell style={{ minWidth: 100 }}>
-              {item.dob}
+            <DataTable.Cell style={{ minWidth: 70 }}>
+              {item.date}
             </DataTable.Cell>
-            <DataTable.Cell style={{ minWidth: 100 }}>
-              {item.wing}
-            </DataTable.Cell>
-            <DataTable.Cell style={{ minWidth: 100 }}>
-              {item.room}
-            </DataTable.Cell>
-            <DataTable.Cell style={{ minWidth: 50 }}>
+            <DataTable.Cell>
               <TouchableOpacity
                 style={{ ...styles.button, backgroundColor: colors.teal100 }}
               >
-                <Entypo name="plus" size={22} color={"green"} />
-              </TouchableOpacity>
-            </DataTable.Cell>
-            <DataTable.Cell style={{ minWidth: 50 }}>
-              <TouchableOpacity
-                style={{
-                  ...styles.removeButton,
-                  backgroundColor: colors.orange100,
-                }}
-              >
-                <FontAwesome name="remove" size={20} color={"red"} />
+                <AntDesign name="right" size={18} color={"green"} />
               </TouchableOpacity>
             </DataTable.Cell>
           </DataTable.Row>
