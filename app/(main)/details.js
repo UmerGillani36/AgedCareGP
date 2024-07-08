@@ -1,8 +1,9 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../../resources/colors";
 import { Button, List, Text, TextInput } from "react-native-paper";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useRouter } from "expo-router";
 import DetailedCard from "../../components/DetailedCard/DetailedCard";
 import Table from "../../components/Table/Table";
@@ -73,7 +74,7 @@ const details = () => {
           </View>
         </View>
         <View style={styles.quickCheckContainer}>
-          <View style={{ ...styles.checkCard, backgroundColor: "green" }}>
+          <View style={{ ...styles.checkCard, backgroundColor: "#43a047" }}>
             <Text variant="titleLarge" style={styles.checkCardheading}>
               Last 731 billed
             </Text>
@@ -81,9 +82,7 @@ const details = () => {
               1/Jan/ 2023
             </Text>
           </View>
-          <View
-            style={{ ...styles.checkCard, backgroundColor: colors.tealA700 }}
-          >
+          <View style={{ ...styles.checkCard, backgroundColor: "#66bb6a" }}>
             <Text variant="titleLarge" style={styles.checkCardheading}>
               Last Psychotropic Review
             </Text>
@@ -259,6 +258,26 @@ const details = () => {
           </List.Accordion>
         </List.AccordionGroup>
       </View>
+      <View style={styles.visitNotesContainer}>
+        <Text variant="headlineSmall" style={styles.resultHeading}>
+          Visit Notes:
+        </Text>
+        <View style={styles.visitNotesContent}>
+          <Text>
+            Nam blandit libero convallis ipsum aliquet efficitur. Duis a
+            ullamcorper lectus. Vivamus quis urna posuere, gravida tortor ac,
+            finibus risus. Proin dignissim interdum libero, in ultrices leo.
+            Aenean ac odio arcu. Nunc convallis nisl id ex auctor efficitur. Sed
+            id lacus nec nunc varius ultricies id commodo urna.
+          </Text>
+        </View>
+        <View style={styles.addAudioContainer}>
+          <TouchableOpacity style={styles.listenAudioButton}>
+            <FontAwesome name="microphone" size={20} color={colors.teal900} />
+            <Text style={styles.listenAudioLabel}>Add Audio Note</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
       <View style={styles.footer}>
         <Button
           mode="contained"
@@ -313,7 +332,7 @@ const styles = StyleSheet.create({
   },
   notes: {
     fontSize: 16,
-    color: "black",
+    color: "white",
   },
   footer: {
     width: "100%",
@@ -441,15 +460,17 @@ const styles = StyleSheet.create({
   notesLabel: {
     fontSize: 20,
     fontWeight: "bold",
+    color: "white",
   },
   notesValue: {
     fontSize: 16,
-    color: "black",
+    color: "white",
     marginBottom: 20,
   },
   plan: {
     fontSize: 18,
     fontWeight: "bold",
+    color: "white",
   },
   accordionContainer: {
     width: "100%",
@@ -485,5 +506,39 @@ const styles = StyleSheet.create({
     borderColor: colors.teal500,
     borderRadius: 8,
     padding: 10,
+  },
+  visitNotesContainer: {
+    width: "100%",
+    padding: 20,
+  },
+  visitNotesContent: {
+    width: "100%",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    backgroundColor: "white",
+  },
+  addAudioContainer: {
+    width: "100%",
+    alignItems: "flex-start",
+    marginTop: 10,
+  },
+  listenAudioButton: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+    backgroundColor: "white",
+    shadowColor: "white",
+    elevation: 10,
+  },
+  listenAudioLabel: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: colors.teal900,
   },
 });
